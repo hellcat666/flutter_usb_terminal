@@ -3,15 +3,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+
 import './utils/USBSerialManagerWidget.dart';
 import './widget/USBTerminalWidget.dart';
 
 //import './ApplicationData.dart';
 class HomePage extends StatefulWidget {
   final String title;
-//  final Stream<String> usbEvents;
 
-  HomePage({Key key, this.title /*, @required this.usbEvents*/})
+  HomePage({Key key, this.title})
       : super(key: key);
 
   @override
@@ -20,18 +20,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   USBSerialManagerWidget _usbSerialManagerWidget;
-//  Stream<String> _usbEvents;
-
-//  StreamSubscription<String> _subEvents;
-//  List<String> _terminalInputData = [];
-
-//  String _status = '';
-//  bool _usbReady = false;
   USBTerminalWidget _usbTerminalWidget;
 
-//  TextEditingController _textController = TextEditingController();
-
-  _HomePageState(/* @required usbEvents */) : super();
+  _HomePageState() : super();
 
   @override
   void initState() {
@@ -55,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     exit(0);
   }
 
-  /*
+  /* Currently UNUSED 
   Widget _buildProgressIndicator() {
     return Center(
         child: Column(
@@ -84,8 +75,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-//    final double columnMediaWidth = MediaQuery.of(context).size.width / 12;
-//    final double columnMediaHeight = MediaQuery.of(context).size.height / 20;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,

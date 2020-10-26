@@ -19,11 +19,9 @@ class USBSerialManager {
   List<Widget> _serialData = [];
   List<UsbDevice> devices = [];
   List<UsbDevice> _devices = [];
-//  UsbDevice _device = null;
   int _deviceId;
   StreamSubscription<String> _subscription;
   Transaction<String> _transaction;
-//  String _pkgName = 'flutter_esp8266_deauther';
 
   USBSerialManager() {
     print('USBSerialManager Constructor');
@@ -47,43 +45,6 @@ class USBSerialManager {
     }
   }
 
-  /*
-  Future<void> _getDevices() async {
-    _devices = await UsbSerial.listDevices();
-    if(_devices.length>0) {
-      print('${_devices.length} devices found.');
-      selectDevice(0);
-    }
-  }
-
-  void selectDevice(int idx) {
-    if(_devices.length>0 && idx<_devices.length) {
-      _device = _devices[idx];
-      _deviceId = _device.deviceId;
-      print('${_device.productName}');
-    }
-    else {
-      _device = null;
-      _currentDeviceId = null;
-    }
-  }
-
-  Future<bool> _openPort() async {
-    if(_device!=null) {
-      _port = await _device.create();
-      if(await _port.open())
-        return true;
-    }
-    return false;    
-  }
-
-  void _closePort() {
-    if(_port!=null) {
-      _port.close();
-      _port = null;  
-    }
-  }
-  */
   Future<bool> connect() async {
     if(_devices.length>0)
       return await _connectTo(_devices[0]);
@@ -136,9 +97,6 @@ class USBSerialManager {
           _serialData.removeAt(0);
         }
     });
-//    print('$devices[0] CONNECTED - Now Sending scan -aps command');
-//    String msg = 'scan -aps\r\n';
-//    port.write(Uint8List.fromList(msg.codeUnits));
     status = CONNECTION_STATUS.CONNECTED;
     return true;
   }
@@ -173,17 +131,4 @@ class USBSerialManager {
     status = CONNECTION_STATUS.IDLE;    
     return true;
   }
-  /*
-  String getStatus() {
-    return _status.inString;
-  }
-
-  bool isConnected() {
-    return _status == CONNECTION_STATUS.CONNECTED;
-  }
-
-  Future<void> sendData(String data) {
-    _port.write(data.codeUnits);  
-  }
-  */
 }

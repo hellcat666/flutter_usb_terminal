@@ -1,4 +1,4 @@
-package com.example.flutter_usb_terminal
+package com.catsoft.flutter_usb_terminal
 
 import io.flutter.embedding.android.FlutterActivity
 

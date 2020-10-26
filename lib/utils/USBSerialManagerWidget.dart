@@ -32,22 +32,17 @@ class USBSerialManagerWidget extends StatefulWidget {
 }
 
 class _USBSerialManagerWidgetState extends State<USBSerialManagerWidget> {
-//  String _title;
   CONNECTION_STATUS _status = CONNECTION_STATUS.IDLE;
   UsbPort _port;
   List<UsbDevice> _devices = [];
-//  UsbDevice _device = null;
   UsbDevice _selectedDevice;
-//  int _selectedIndex = 0;
   Transaction<String> _transaction;
   StreamSubscription<String> _subscription;
   StreamController<String> _streamController = StreamController<String>.broadcast();  
-//  String _pkgName = 'flutter_esp8266_deauther';
   bool _usbReady = false;
 
   _USBSerialManagerWidgetState() {
     print('USBSerialManager Constructor');
-//    this._title = title;
     this._port = null;
     this._selectedDevice = null;
   }
@@ -128,14 +123,7 @@ class _USBSerialManagerWidgetState extends State<USBSerialManagerWidget> {
     _subscription = _transaction.stream.listen((String line) {
       print('########## $line');
       _streamController.sink.add(line);
-//      NotifierProvider.of(context).notify('usb-serial-data-received', line);
     });
-//    print('$_devices[0] CONNECTED - Now Sending scan -aps command');
-//    String msg = 'scan -aps';
-//    _port.write(Uint8List.fromList(msg.codeUnits));
-//    _status = CONNECTION_STATUS.CONNECTED;
-
-
     setState(() {
       _status = CONNECTION_STATUS.CONNECTED;
       _usbReady = true;
@@ -145,7 +133,6 @@ class _USBSerialManagerWidgetState extends State<USBSerialManagerWidget> {
 
   Future<void >_getDevices() async {
     _devices = await UsbSerial.listDevices();
-//    print(_devices);
   }
 
   void executeCommand(String cmd) {
@@ -235,7 +222,6 @@ class _USBSerialManagerWidgetState extends State<USBSerialManagerWidget> {
           setState(() {
             _selectedDevice = newValue;
           });
-//          NotifierProvider.of(context).notify('device-changed', _selectedDevice);
         },
         items: _devices.toList().map((device) {
           return DropdownMenuItem(
